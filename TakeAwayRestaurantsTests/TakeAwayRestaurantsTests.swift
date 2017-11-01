@@ -11,14 +11,25 @@ import XCTest
 
 class TakeAwayRestaurantsTests: XCTestCase {
     
+    var appController:AppController!
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        appController = AppController()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testJSONPathCanLoad() {
+        //Assumption
+//        let testExpectation = expectation(description: "Loaded JSON Successfully")
+        
+        XCTAssertTrue(appController.loadJSONFile(), "We couldnt load JSON")
+        
     }
     
     func testRestaurantParseFromJSON()

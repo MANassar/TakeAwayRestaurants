@@ -21,11 +21,35 @@ enum SortOptions {
 
 class RestaurantSortController {
     
-    var RestarurantArray:[Restaurant]?
-    var sortedRestaurantsArray:[Restaurant]?
+    var favoriteRestaurantsArray: [Restaurant]?
+    var nonFavoriteRestarurantsArray: [Restaurant]?
     
-    func sortRestaurants(sortOption: SortOptions) -> [Restaurant]
+    private func separateFavoriteRestaurants(allRestaurantsArray: [Restaurant])
     {
-        //
+        for restaurant in allRestaurantsArray
+        {
+            if (restaurant.isFavorite) {
+                favoriteRestaurantsArray?.append(restaurant)
+            }
+            
+            else {
+                nonFavoriteRestarurantsArray?.append(restaurant)
+            }
+        }
     }
+    
+    //This function doesnt care whether the restaurant is favorite or not. It will just sort based on the sort parameter
+//    private func sortRestaurantArray(restaurantsSubArray: [Restaurant], sortOption:SortOptions) -> [Restaurant]
+//    {
+//        
+//    }
+//    
+//    //So the sort function will work twice.
+//    func sortRestaurants(allRestaurantsArray: [Restaurant], sortOption: SortOptions) -> [Restaurant]
+//    {
+//        //First separate favorites from non favorites
+//        self.separateFavoriteRestaurants(allRestaurantsArray: allRestaurantsArray)
+//        
+//        
+//    }
 }
