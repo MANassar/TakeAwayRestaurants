@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		AA8F80881FAA458B00046932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80871FAA458B00046932 /* AppDelegate.swift */; };
-		AA8F808A1FAA458B00046932 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80891FAA458B00046932 /* ViewController.swift */; };
 		AA8F808D1FAA458B00046932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8F808B1FAA458B00046932 /* Main.storyboard */; };
 		AA8F808F1FAA458B00046932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA8F808E1FAA458B00046932 /* Assets.xcassets */; };
 		AA8F80921FAA458B00046932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8F80901FAA458B00046932 /* LaunchScreen.storyboard */; };
 		AA8F809D1FAA458B00046932 /* TakeAwayRestaurantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F809C1FAA458B00046932 /* TakeAwayRestaurantsTests.swift */; };
 		AA8F80A81FAA458B00046932 /* TakeAwayRestaurantsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80A71FAA458B00046932 /* TakeAwayRestaurantsUITests.swift */; };
+		AA8F80B91FAA45F800046932 /* sample iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = AA8F80B81FAA45F800046932 /* sample iOS.json */; };
+		AA8F80BD1FAA46E400046932 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80BC1FAA46E400046932 /* Restaurant.swift */; };
+		AA8F80C31FAA51F400046932 /* RestaurantSortController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,6 @@
 /* Begin PBXFileReference section */
 		AA8F80841FAA458B00046932 /* TakeAwayRestaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeAwayRestaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8F80871FAA458B00046932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA8F80891FAA458B00046932 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA8F808C1FAA458B00046932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA8F808E1FAA458B00046932 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA8F80911FAA458B00046932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,9 @@
 		AA8F80A31FAA458B00046932 /* TakeAwayRestaurantsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeAwayRestaurantsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8F80A71FAA458B00046932 /* TakeAwayRestaurantsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeAwayRestaurantsUITests.swift; sourceTree = "<group>"; };
 		AA8F80A91FAA458B00046932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA8F80B81FAA45F800046932 /* sample iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sample iOS.json"; sourceTree = "<group>"; };
+		AA8F80BC1FAA46E400046932 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +101,14 @@
 		AA8F80861FAA458B00046932 /* TakeAwayRestaurants */ = {
 			isa = PBXGroup;
 			children = (
-				AA8F80871FAA458B00046932 /* AppDelegate.swift */,
-				AA8F80891FAA458B00046932 /* ViewController.swift */,
-				AA8F808B1FAA458B00046932 /* Main.storyboard */,
+				AA8F80BE1FAA47D700046932 /* 3rd Party */,
+				AA8F80C11FAA51D400046932 /* Controllers */,
+				AA8F80BB1FAA46D100046932 /* Model */,
+				AA8F80BA1FAA460E00046932 /* Storyboards */,
+				AA8F80B61FAA45B200046932 /* Main View */,
+				AA8F80B51FAA45A500046932 /* Core */,
+				AA8F80B71FAA45EB00046932 /* Resources */,
 				AA8F808E1FAA458B00046932 /* Assets.xcassets */,
-				AA8F80901FAA458B00046932 /* LaunchScreen.storyboard */,
 				AA8F80931FAA458B00046932 /* Info.plist */,
 			);
 			path = TakeAwayRestaurants;
@@ -123,6 +130,61 @@
 				AA8F80A91FAA458B00046932 /* Info.plist */,
 			);
 			path = TakeAwayRestaurantsUITests;
+			sourceTree = "<group>";
+		};
+		AA8F80B51FAA45A500046932 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AA8F80871FAA458B00046932 /* AppDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		AA8F80B61FAA45B200046932 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
+		AA8F80B71FAA45EB00046932 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA8F80B81FAA45F800046932 /* sample iOS.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AA8F80BA1FAA460E00046932 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				AA8F808B1FAA458B00046932 /* Main.storyboard */,
+				AA8F80901FAA458B00046932 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		AA8F80BB1FAA46D100046932 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA8F80BC1FAA46E400046932 /* Restaurant.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA8F80BE1FAA47D700046932 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "3rd Party";
+			sourceTree = "<group>";
+		};
+		AA8F80C11FAA51D400046932 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA8F80B91FAA45F800046932 /* sample iOS.json in Resources */,
 				AA8F80921FAA458B00046932 /* LaunchScreen.storyboard in Resources */,
 				AA8F808F1FAA458B00046932 /* Assets.xcassets in Resources */,
 				AA8F808D1FAA458B00046932 /* Main.storyboard in Resources */,
@@ -259,7 +322,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA8F808A1FAA458B00046932 /* ViewController.swift in Sources */,
+				AA8F80BD1FAA46E400046932 /* Restaurant.swift in Sources */,
+				AA8F80C31FAA51F400046932 /* RestaurantSortController.swift in Sources */,
 				AA8F80881FAA458B00046932 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
