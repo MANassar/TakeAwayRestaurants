@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		AA6F1A9D1FAA663D00AF7BEC /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1A9C1FAA663D00AF7BEC /* AppController.swift */; };
+		AA6F1AA81FAA750F00AF7BEC /* ExtensionDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1A9F1FAA750F00AF7BEC /* ExtensionDictionary.swift */; };
+		AA6F1AA91FAA751000AF7BEC /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1AA01FAA750F00AF7BEC /* Decoder.swift */; };
+		AA6F1AAA1FAA751000AF7BEC /* ExtensionDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1AA11FAA750F00AF7BEC /* ExtensionDecodable.swift */; };
+		AA6F1AAB1FAA751000AF7BEC /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1AA31FAA750F00AF7BEC /* Encoder.swift */; };
+		AA6F1AAC1FAA751000AF7BEC /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1AA41FAA750F00AF7BEC /* Operators.swift */; };
+		AA6F1AAD1FAA751000AF7BEC /* Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1AA51FAA750F00AF7BEC /* Gloss.swift */; };
+		AA6F1AAE1FAA751000AF7BEC /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1AA61FAA750F00AF7BEC /* ExtensionArray.swift */; };
+		AA6F1AAF1FAA751000AF7BEC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6F1AA71FAA750F00AF7BEC /* Info.plist */; };
 		AA8F80881FAA458B00046932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80871FAA458B00046932 /* AppDelegate.swift */; };
 		AA8F808D1FAA458B00046932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8F808B1FAA458B00046932 /* Main.storyboard */; };
 		AA8F808F1FAA458B00046932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA8F808E1FAA458B00046932 /* Assets.xcassets */; };
@@ -38,6 +46,15 @@
 
 /* Begin PBXFileReference section */
 		AA6F1A9C1FAA663D00AF7BEC /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		AA6F1A9F1FAA750F00AF7BEC /* ExtensionDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDictionary.swift; sourceTree = "<group>"; };
+		AA6F1AA01FAA750F00AF7BEC /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		AA6F1AA11FAA750F00AF7BEC /* ExtensionDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDecodable.swift; sourceTree = "<group>"; };
+		AA6F1AA21FAA750F00AF7BEC /* Gloss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gloss.h; sourceTree = "<group>"; };
+		AA6F1AA31FAA750F00AF7BEC /* Encoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
+		AA6F1AA41FAA750F00AF7BEC /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		AA6F1AA51FAA750F00AF7BEC /* Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gloss.swift; sourceTree = "<group>"; };
+		AA6F1AA61FAA750F00AF7BEC /* ExtensionArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
+		AA6F1AA71FAA750F00AF7BEC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA8F80841FAA458B00046932 /* TakeAwayRestaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeAwayRestaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8F80871FAA458B00046932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA8F808C1FAA458B00046932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +97,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA6F1A9E1FAA750F00AF7BEC /* Gloss */ = {
+			isa = PBXGroup;
+			children = (
+				AA6F1A9F1FAA750F00AF7BEC /* ExtensionDictionary.swift */,
+				AA6F1AA01FAA750F00AF7BEC /* Decoder.swift */,
+				AA6F1AA11FAA750F00AF7BEC /* ExtensionDecodable.swift */,
+				AA6F1AA21FAA750F00AF7BEC /* Gloss.h */,
+				AA6F1AA31FAA750F00AF7BEC /* Encoder.swift */,
+				AA6F1AA41FAA750F00AF7BEC /* Operators.swift */,
+				AA6F1AA51FAA750F00AF7BEC /* Gloss.swift */,
+				AA6F1AA61FAA750F00AF7BEC /* ExtensionArray.swift */,
+				AA6F1AA71FAA750F00AF7BEC /* Info.plist */,
+			);
+			path = Gloss;
+			sourceTree = "<group>";
+		};
 		AA8F807B1FAA458A00046932 = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +210,7 @@
 		AA8F80BE1FAA47D700046932 /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				AA6F1A9E1FAA750F00AF7BEC /* Gloss */,
 			);
 			path = "3rd Party";
 			sourceTree = "<group>";
@@ -300,6 +334,7 @@
 				AA8F80B91FAA45F800046932 /* sample iOS.json in Resources */,
 				AA8F80921FAA458B00046932 /* LaunchScreen.storyboard in Resources */,
 				AA8F808F1FAA458B00046932 /* Assets.xcassets in Resources */,
+				AA6F1AAF1FAA751000AF7BEC /* Info.plist in Resources */,
 				AA8F808D1FAA458B00046932 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,10 +360,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6F1AAD1FAA751000AF7BEC /* Gloss.swift in Sources */,
+				AA6F1AAB1FAA751000AF7BEC /* Encoder.swift in Sources */,
+				AA6F1AAE1FAA751000AF7BEC /* ExtensionArray.swift in Sources */,
+				AA6F1AAA1FAA751000AF7BEC /* ExtensionDecodable.swift in Sources */,
+				AA6F1AA81FAA750F00AF7BEC /* ExtensionDictionary.swift in Sources */,
 				AA8F80BD1FAA46E400046932 /* Restaurant.swift in Sources */,
 				AA8F80C31FAA51F400046932 /* RestaurantSortController.swift in Sources */,
 				AA8F80881FAA458B00046932 /* AppDelegate.swift in Sources */,
+				AA6F1AA91FAA751000AF7BEC /* Decoder.swift in Sources */,
 				AA6F1A9D1FAA663D00AF7BEC /* AppController.swift in Sources */,
+				AA6F1AAC1FAA751000AF7BEC /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

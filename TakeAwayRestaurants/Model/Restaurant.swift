@@ -14,10 +14,10 @@ enum Status:Int {
     case OrderAhead = 2
 }
 
-class Restaurant
+class Restaurant:Decodable
 {
     var name:String!
-    var status:Status!
+    var status:String!
     var bestMatch: Float!
     var newest: Float!
     var ratingAverage: Float!
@@ -27,6 +27,13 @@ class Restaurant
     var deliveryCosts: Float!
     var minCost: Float!
     var isFavorite = false
+    
+    required init?(json: JSON)
+    {
+        self.name = "name" <~~ json
+        self.status = "status" <~~ json
+        
+    }
     
     /*
     init(name:String, status:Int, bestMatch: Float, newest:Float, ratingAverage:Float, distance: Float, popularity:Float, averagePrice:Float, deliveryCost:Float, minCost:Float)
