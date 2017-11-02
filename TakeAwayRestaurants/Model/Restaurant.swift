@@ -14,7 +14,7 @@ enum Status:Int {
     case OrderAhead = 2
 }
 
-class Restaurant:Decodable
+class Restaurant:Decodable, CustomStringConvertible
 {
     var name:String!
     var status:String!
@@ -36,17 +36,14 @@ class Restaurant:Decodable
     {
         self.name = "name" <~~ json
         self.status = "status" <~~ json
-        
+        self.bestMatch = "bestMatch" <~~ json
+        self.newest = "newest" <~~ json
+        self.ratingAverage = "ratingAverage" <~~ json
+        self.distance = "distance" <~~ json
+        self.popularity = "popularity" <~~ json
+        self.averageProductPrice = "averageProductPrice" <~~ json
+        self.deliveryCosts = "deliveryCosts" <~~ json
+        self.minCost = "minCost" <~~ json
     }
-    
-    /*
-    init(name:String, status:Int, bestMatch: Float, newest:Float, ratingAverage:Float, distance: Float, popularity:Float, averagePrice:Float, deliveryCost:Float, minCost:Float)
-    {
-        self.name = name
-        self.status = Status.init(rawValue: status)
-        self.bestMatch = bestMatch
-        self.newest = newest
-        
-    }*/
 }
 
