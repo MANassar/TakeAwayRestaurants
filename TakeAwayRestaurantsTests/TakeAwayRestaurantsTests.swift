@@ -45,6 +45,11 @@ class TakeAwayRestaurantsTests: XCTestCase {
     
     func testRestaurantSort()
     {
+        let jsonArray = appController.loadJSONFile(jsonFileName: jsonFileName)
+        let restaurantArray = appController.generateRestaurantArray(fromJSONArray: jsonArray!)
+        let sortCondition:SortOptions = .BestMatch
+        
+        let sortedRestaurantArray = RestaurantSortController.sortRestaurantSubArray(restaurantsSubArray: restaurantArray, sortOption: sortCondition)
         
     }
     
