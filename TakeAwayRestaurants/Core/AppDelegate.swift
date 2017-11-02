@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let appController = AppController()
         _ = appController.loadJSONFile()
+        appController.parseJSON()
         
         return true
     }
