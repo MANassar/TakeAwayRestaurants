@@ -29,21 +29,21 @@ class Restaurant:Decodable, CustomStringConvertible
     var isFavorite = false
     
     var description:String {
-        return "Restaurant name = \(name), status = \(status)"
+        return "Restaurant name = \(name!), isFavorite = \(isFavorite), status = \(status!)"
     }
     
     required init?(json: JSON)
     {
         self.name = "name" <~~ json
         self.status = "status" <~~ json
-        self.bestMatch = "bestMatch" <~~ json
-        self.newest = "newest" <~~ json
-        self.ratingAverage = "ratingAverage" <~~ json
-        self.distance = "distance" <~~ json
-        self.popularity = "popularity" <~~ json
-        self.averageProductPrice = "averageProductPrice" <~~ json
-        self.deliveryCosts = "deliveryCosts" <~~ json
-        self.minCost = "minCost" <~~ json
+        self.bestMatch = "sortingValues.bestMatch" <~~ json
+        self.newest = "sortingValues.newest" <~~ json
+        self.ratingAverage = "sortingValues.ratingAverage" <~~ json
+        self.distance = "sortingValues.distance" <~~ json
+        self.popularity = "sortingValues.popularity" <~~ json
+        self.averageProductPrice = "sortingValues.averageProductPrice" <~~ json
+        self.deliveryCosts = "sortingValues.deliveryCosts" <~~ json
+        self.minCost = "sortingValues.minCost" <~~ json
     }
 }
 

@@ -39,12 +39,36 @@ class RestaurantSortController {
     }
     
     //This function doesnt care whether the restaurant is favorite or not. It will just sort based on the sort parameter
-//    private func sortRestaurantArray(restaurantsSubArray: [Restaurant], sortOption:SortOptions) -> [Restaurant]
-//    {
-//        
-//    }
-//    
-//    //So the sort function will work twice.
+    class func sortRestaurantSubArray(restaurantsSubArray: [Restaurant], sortOption:SortOptions) -> [Restaurant]
+    {
+        switch sortOption {
+        case .BestMatch:
+            return restaurantsSubArray.sorted(by: {$0.bestMatch > $1.bestMatch})
+        
+        case .Newest:
+            return restaurantsSubArray.sorted(by: {$0.newest > $1.newest})
+            
+        case .RatingAverage:
+            return restaurantsSubArray.sorted(by: {$0.ratingAverage > $1.ratingAverage})
+        
+        case .Distance:
+            return restaurantsSubArray.sorted(by: {$0.distance > $1.distance})
+            
+        case .Popularity:
+            return restaurantsSubArray.sorted(by: {$0.popularity > $1.popularity})
+            
+        case .AveragePrice:
+            return restaurantsSubArray.sorted(by: {$0.averageProductPrice > $1.averageProductPrice})
+            
+        case .DeliveryCost:
+            return restaurantsSubArray.sorted(by: {$0.deliveryCosts > $1.deliveryCosts})
+        
+        case .MinCost:
+            return restaurantsSubArray.sorted(by: {$0.minCost > $1.minCost})
+        }
+    }
+    
+    //So the sort function will work twice.
 //    func sortRestaurants(allRestaurantsArray: [Restaurant], sortOption: SortOptions) -> [Restaurant]
 //    {
 //        //First separate favorites from non favorites

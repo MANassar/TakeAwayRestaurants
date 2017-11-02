@@ -34,7 +34,6 @@ class AppController
     func generateRestaurantArray(fromJSONArray: [JSON]) -> [Restaurant]
     {
         restaurantArray = [Restaurant].from(jsonArray: jsonArray)
-        debugPrint(restaurantArray)
         
         return restaurantArray
     }

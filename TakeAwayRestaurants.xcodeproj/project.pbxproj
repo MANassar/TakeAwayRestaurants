@@ -218,8 +218,8 @@
 		AA8F80C11FAA51D400046932 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */,
 				AA6F1A9C1FAA663D00AF7BEC /* AppController.swift */,
+				AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
