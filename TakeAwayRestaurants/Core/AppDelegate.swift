@@ -12,13 +12,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let jsonFileName = "sample iOS"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let appController = AppController()
-        _ = appController.loadJSONFile()
-        appController.parseJSON()
+        let jsonArray = appController.loadJSONFile(jsonFileName: jsonFileName)
+        _ = appController.generateRestaurantArray(fromJSONArray: jsonArray!)
         
         return true
     }

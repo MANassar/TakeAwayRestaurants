@@ -8,31 +8,36 @@
 
 import Foundation
 
-class AppController {
-    
-    let jsonFileName = "sample iOS"
+class AppController
+{
     var jsonArray:[JSON]!
     var restaurantArray: [Restaurant]!
     
-    func loadJSONFile() -> Bool
+    func loadJSONFile(jsonFileName:String) -> [JSON]?
     {
         let bundle = Bundle(for: type(of: self))
         let path = bundle.path(forResource: jsonFileName, ofType: "json")
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url, options: .alwaysMapped)
+        
         if let jsonFile = try? JSONSerialization.jsonObject(with: data!) as? JSON
         {
             jsonArray = jsonFile!["restaurants"] as? [JSON]
-            return true
+            return jsonArray
         }
         
         else {
-            return false
+            return nil
         }
     }
     
-    func parseJSON() {
+    func generateRestaurantArray(fromJSONArray: [JSON]) -> [Restaurant]
+    {
         restaurantArray = [Restaurant].from(jsonArray: jsonArray)
         debugPrint(restaurantArray)
+        
+        return restaurantArray
     }
+    
+    
 }

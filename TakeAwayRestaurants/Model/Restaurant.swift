@@ -28,6 +28,10 @@ class Restaurant:Decodable
     var minCost: Float!
     var isFavorite = false
     
+    var description:String {
+        return "Restaurant name = \(name), status = \(status)"
+    }
+    
     required init?(json: JSON)
     {
         self.name = "name" <~~ json
