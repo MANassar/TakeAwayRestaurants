@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let appController = AppController()
         let jsonArray = appController.loadJSONFile(jsonFileName: jsonFileName)
-        _ = appController.generateRestaurantArray(fromJSONArray: jsonArray!)
+        let restArray:[Restaurant] = appController.generateRestaurantArray(fromJSONArray: jsonArray!)!
+        debugPrint(RestaurantSortController.sortRestaurants(allRestaurantsArray: restArray, sortOption: .BestMatch))
         
         return true
     }

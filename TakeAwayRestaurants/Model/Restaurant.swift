@@ -29,7 +29,7 @@ class Restaurant:Decodable, CustomStringConvertible
     var isFavorite = false
     
     var description:String {
-        return "Restaurant name = \(name!), isFavorite = \(isFavorite), status = \(status!)"
+        return "Restaurant name = \(name!), isFavorite = \(isFavorite), status = \(status!), bestMatch = \(bestMatch)\n"
     }
     
     required init?(json: JSON)
