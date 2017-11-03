@@ -35,10 +35,15 @@ class TakeAwayRestaurantsTests: XCTestCase {
         
     }
     
-    func testRestaurantParseFromJSON()
+    
+    //This function checks that we actually have restaurants and whether the restaruant array count matches the JSON array count
+    func testRestaurantCountMatchesJSONCount()
     {
         let jsonArray = appController.loadJSONFile(jsonFileName: jsonFileName)
-        let restaurantArray = appController.generateRestaurantArray(fromJSONArray: jsonArray!)
+        guard let restaurantArray = appController.generateRestaurantArray(fromJSONArray: jsonArray!) else {
+            XCTFail("Couldnt parse JSON")
+            return
+        }
         
         XCTAssertEqual(jsonArray?.count, restaurantArray.count)
     }
@@ -49,7 +54,7 @@ class TakeAwayRestaurantsTests: XCTestCase {
         let restaurantArray = appController.generateRestaurantArray(fromJSONArray: jsonArray!)
         let sortCondition:SortOptions = .BestMatch
         
-        let sortedRestaurantArray = RestaurantSortController.sortRestaurantSubArray(restaurantsSubArray: restaurantArray, sortOption: sortCondition)
+        let sortedRestaurantArray = RestaurantSortController.sortRestaurantSubArray(restaurantsSubArray: restaurantArray!, sortOption: sortCondition)
         
     }
     

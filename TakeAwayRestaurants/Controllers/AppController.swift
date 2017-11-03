@@ -11,8 +11,8 @@ import Foundation
 class AppController
 {
     var jsonArray:[JSON]!
-    var restaurantArray: [Restaurant]!
     
+    //Load the JSON file from the app directory. Generates a JSON array
     func loadJSONFile(jsonFileName:String) -> [JSON]?
     {
         let bundle = Bundle(for: type(of: self))
@@ -31,9 +31,12 @@ class AppController
         }
     }
     
-    func generateRestaurantArray(fromJSONArray: [JSON]) -> [Restaurant]
+    //Takes the generated JSON array and generates a restaurant array
+    func generateRestaurantArray(fromJSONArray: [JSON]) -> [Restaurant]?
     {
-        restaurantArray = [Restaurant].from(jsonArray: jsonArray)
+        guard let restaurantArray = [Restaurant].from(jsonArray: jsonArray) else {
+            return nil
+        }
         
         return restaurantArray
     }
