@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FF96BAB1FACBC1600D99676 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF96BAA1FACBC1600D99676 /* MainViewController.swift */; };
 		AA6F1A9D1FAA663D00AF7BEC /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1A9C1FAA663D00AF7BEC /* AppController.swift */; };
 		AA6F1AA81FAA750F00AF7BEC /* ExtensionDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1A9F1FAA750F00AF7BEC /* ExtensionDictionary.swift */; };
 		AA6F1AA91FAA751000AF7BEC /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F1AA01FAA750F00AF7BEC /* Decoder.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FF96BAA1FACBC1600D99676 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AA6F1A9C1FAA663D00AF7BEC /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		AA6F1A9F1FAA750F00AF7BEC /* ExtensionDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDictionary.swift; sourceTree = "<group>"; };
 		AA6F1AA01FAA750F00AF7BEC /* Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4FF96BA91FACBBF500D99676 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4FF96BAA1FACBC1600D99676 /* MainViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		AA6F1A9E1FAA750F00AF7BEC /* Gloss */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,7 +150,7 @@
 				AA8F80C11FAA51D400046932 /* Controllers */,
 				AA8F80BB1FAA46D100046932 /* Model */,
 				AA8F80BA1FAA460E00046932 /* Storyboards */,
-				AA8F80B61FAA45B200046932 /* Main View */,
+				4FF96BA91FACBBF500D99676 /* View Controllers */,
 				AA8F80B51FAA45A500046932 /* Core */,
 				AA8F80B71FAA45EB00046932 /* Resources */,
 				AA8F808E1FAA458B00046932 /* Assets.xcassets */,
@@ -173,13 +183,6 @@
 				AA8F80871FAA458B00046932 /* AppDelegate.swift */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		AA8F80B61FAA45B200046932 /* Main View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Main View";
 			sourceTree = "<group>";
 		};
 		AA8F80B71FAA45EB00046932 /* Resources */ = {
@@ -363,6 +366,7 @@
 				AA6F1AAD1FAA751000AF7BEC /* Gloss.swift in Sources */,
 				AA6F1AAB1FAA751000AF7BEC /* Encoder.swift in Sources */,
 				AA6F1AAE1FAA751000AF7BEC /* ExtensionArray.swift in Sources */,
+				4FF96BAB1FACBC1600D99676 /* MainViewController.swift in Sources */,
 				AA6F1AAA1FAA751000AF7BEC /* ExtensionDecodable.swift in Sources */,
 				AA6F1AA81FAA750F00AF7BEC /* ExtensionDictionary.swift in Sources */,
 				AA8F80BD1FAA46E400046932 /* Restaurant.swift in Sources */,
