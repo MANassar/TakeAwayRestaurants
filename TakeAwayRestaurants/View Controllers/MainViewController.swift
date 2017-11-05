@@ -12,6 +12,10 @@ class MainViewController: UIViewController {
 
     var favoriteRestaurantsArray:[Restaurant]?
     var nonFavoriteRestaurantsArray:[Restaurant]?
+    
+    var filteredFavorites: [Restaurant]?
+    var filteredNonFavorites: [Restaurant]?
+    
     var gotFavorites = false
     var selectedSortOption = SortOptions.BestMatch
     
@@ -35,6 +39,9 @@ class MainViewController: UIViewController {
         
         favoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.favoriteRestaurants!, sortOption: selectedSortOption)
         nonFavoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.nonFavoriteRestaurants, sortOption: selectedSortOption)
+        
+        filteredFavorites = favoriteRestaurantsArray
+        filteredNonFavorites = nonFavoriteRestaurantsArray
         
         gotFavorites = (favoriteRestaurantsArray != nil && favoriteRestaurantsArray!.count > 0)
     }
@@ -180,5 +187,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
+    }
+}
+
+extension MainViewController: UISearchBarDelegate, UISearchDisplayDelegate
+{
+    //This should filter both the favorites and the non favorites
+    func filterRestaurantsWithString(searchString: String)
+    {
+        
     }
 }
