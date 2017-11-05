@@ -13,12 +13,13 @@ class MainViewController: UIViewController {
     var favoriteRestaurantsArray:[Restaurant]?
     var nonFavoriteRestaurantsArray:[Restaurant]?
     var gotFavorites = false
-    var sortOption = SortOptions.BestMatch
+    var selectedSortOption = SortOptions.BestMatch
     
     let jsonFileName = "sample iOS"
     var jsonArray:[JSON]!
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var mainTableView: UITableView!
+    var sortOptionsTableViewController:UITableViewController?
     
     override func viewDidLoad()
     {
@@ -32,8 +33,8 @@ class MainViewController: UIViewController {
         let restArray:[Restaurant] = AppController.generateRestaurantArray(fromJSONArray: jsonArray!)!
         let subArrays = AppController.getSeparatedRestaurantsArrays(generatedRestaurantArray: restArray)
         
-        favoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.favoriteRestaurants!, sortOption: sortOption)
-        nonFavoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.nonFavoriteRestaurants, sortOption: sortOption)
+        favoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.favoriteRestaurants!, sortOption: selectedSortOption)
+        nonFavoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.nonFavoriteRestaurants, sortOption: selectedSortOption)
         
         gotFavorites = (favoriteRestaurantsArray != nil && favoriteRestaurantsArray!.count > 0)
     }
@@ -42,9 +43,23 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "presentSortingOptionsPopover"
+        {
+            if let sortingOptions = segue.destination as? UITableViewController
+            {
+                sortOptionsTableViewController = sortingOptions
+                sortOptionsTableViewController!.tableView.delegate = self
+                sortOptionsTableViewController!.modalPresentationStyle = UIModalPresentationStyle.popover
+                sortOptionsTableViewController!.popoverPresentationController!.delegate = self
+            }
+        }
+    }
 }
 
-extension MainViewController: UITableViewDataSource, UITableViewDelegate, RestaurantCellDelegate
+extension MainViewController: UITableViewDataSource, UITableViewDelegate, RestaurantCellDelegate, UIPopoverPresentationControllerDelegate
 {
     func numberOfSections(in tableView: UITableView) -> Int
     {
@@ -93,7 +108,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
         
         var restaurantSortValue:Float!
         
-        switch sortOption
+        switch selectedSortOption
         {
             case .BestMatch:
                 restaurantSortValue = restaurant.bestMatch
@@ -113,11 +128,26 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
                 restaurantSortValue = restaurant.ratingAverage
         }
         
-        cell.restaurantSortValueLabel.text = "\(sortOption.rawValue): \(restaurantSortValue!)"
+        cell.restaurantSortValueLabel.text = "\(selectedSortOption.rawValue): \(restaurantSortValue!)"
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        if tableView == sortOptionsTableViewController?.tableView {
+            let cell = tableView.cellForRow(at: indexPath)
+            let sortingOptionString = cell?.textLabel?.text
+            selectedSortOption = SortOptions(rawValue: sortingOptionString!)!
+            self.dismiss(animated: true, completion: nil) //Dismiss the popover
+            mainTableView.reloadData()
+        }
+    }
+    
+    
+    //
+    // MARK: Restaurant Cell Delegate
+    //
     func addFavoritesButtonPressed(restaurantCell: RestaurantCell)
     {
         let favoritesManager = FavoritesManager.sharedManager
@@ -132,6 +162,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
             restaurantCell.restaurantFavoriteButton.isSelected = false
         }
         
-        tableView.reloadData()
+        mainTableView.reloadData()
+    }
+    
+    //
+    // MARK: Popover Delegate
+    //
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
 }
