@@ -14,7 +14,22 @@ enum Status:Int {
     case OrderAhead = 2
 }
 
-class Restaurant:Decodable, CustomStringConvertible
+struct RestaurantKeys
+{
+    static let nameKey = "name"
+    static let statusKey = "status"
+    static let bestMatchKey = "sortingValues.bestMatch"
+    static let newestKey = "sortingValues.newest"
+    static let ratingAverageKey = "sortingValues.ratingAverage"
+    static let distanceKey = "sortingValues.distance"
+    static let popularityKey = "sortingValues.popularity"
+    static let averageProductPriceKey = "sortingValues.averageProductPrice"
+    static let deliveryCostsKey = "sortingValues.deliveryCosts"
+    static let minCostKey = "sortingValues.minCost"
+    static let isFavoriteKey = "isFavorite"
+}
+
+class Restaurant:Decodable, Encodable, CustomStringConvertible
 {
     var name:String!
     var status:String!
@@ -26,7 +41,7 @@ class Restaurant:Decodable, CustomStringConvertible
     var averageProductPrice: Float!
     var deliveryCosts: Float!
     var minCost: Float!
-    var isFavorite = false
+    var isFavorite:Bool!
     
     var description:String {
         return "Restaurant name = \(name!), isFavorite = \(isFavorite), status = \(status!), bestMatch = \(bestMatch)\n"
@@ -34,16 +49,33 @@ class Restaurant:Decodable, CustomStringConvertible
     
     required init?(json: JSON)
     {
-        self.name = "name" <~~ json
-        self.status = "status" <~~ json
-        self.bestMatch = "sortingValues.bestMatch" <~~ json
-        self.newest = "sortingValues.newest" <~~ json
-        self.ratingAverage = "sortingValues.ratingAverage" <~~ json
-        self.distance = "sortingValues.distance" <~~ json
-        self.popularity = "sortingValues.popularity" <~~ json
-        self.averageProductPrice = "sortingValues.averageProductPrice" <~~ json
-        self.deliveryCosts = "sortingValues.deliveryCosts" <~~ json
-        self.minCost = "sortingValues.minCost" <~~ json
+        self.name = RestaurantKeys.nameKey <~~ json
+        self.status = RestaurantKeys.statusKey <~~ json
+        self.bestMatch = RestaurantKeys.bestMatchKey <~~ json
+        self.newest = RestaurantKeys.newestKey <~~ json
+        self.ratingAverage = RestaurantKeys.ratingAverageKey <~~ json
+        self.distance = RestaurantKeys.distanceKey <~~ json
+        self.popularity = RestaurantKeys.popularityKey <~~ json
+        self.averageProductPrice = RestaurantKeys.averageProductPriceKey <~~ json
+        self.deliveryCosts = RestaurantKeys.deliveryCostsKey <~~ json
+        self.minCost = RestaurantKeys.minCostKey <~~ json
+    }
+    
+    func toJSON() -> JSON?
+    {
+        return jsonify([
+            RestaurantKeys.nameKey ~~> self.name,
+            RestaurantKeys.statusKey ~~> self.status,
+            RestaurantKeys.bestMatchKey ~~> self.bestMatch,
+            RestaurantKeys.newestKey ~~> self.newest,
+            RestaurantKeys.ratingAverageKey ~~> self.ratingAverage,
+            RestaurantKeys.distanceKey ~~> self.distance,
+            RestaurantKeys.popularityKey ~~> self.popularity,
+            RestaurantKeys.averageProductPriceKey ~~> self.averageProductPrice,
+            RestaurantKeys.deliveryCostsKey ~~> self.deliveryCosts,
+            RestaurantKeys.minCostKey ~~> self.minCost,
+            RestaurantKeys.isFavoriteKey ~~> self.isFavorite
+            ])
     }
 }
 

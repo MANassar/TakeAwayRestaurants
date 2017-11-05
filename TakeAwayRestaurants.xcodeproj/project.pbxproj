@@ -26,6 +26,7 @@
 		AA8F80B91FAA45F800046932 /* sample iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = AA8F80B81FAA45F800046932 /* sample iOS.json */; };
 		AA8F80BD1FAA46E400046932 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80BC1FAA46E400046932 /* Restaurant.swift */; };
 		AA8F80C31FAA51F400046932 /* RestaurantSortController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */; };
+		AAD8BAA21FAE4CDB00DE3FB9 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD8BAA11FAE4CDB00DE3FB9 /* FavoritesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		AA8F80B81FAA45F800046932 /* sample iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sample iOS.json"; sourceTree = "<group>"; };
 		AA8F80BC1FAA46E400046932 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortController.swift; sourceTree = "<group>"; };
+		AAD8BAA11FAE4CDB00DE3FB9 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 			children = (
 				AA6F1A9C1FAA663D00AF7BEC /* AppController.swift */,
 				AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */,
+				AAD8BAA11FAE4CDB00DE3FB9 /* FavoritesManager.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				AA8F80881FAA458B00046932 /* AppDelegate.swift in Sources */,
 				AA6F1AA91FAA751000AF7BEC /* Decoder.swift in Sources */,
 				AA6F1A9D1FAA663D00AF7BEC /* AppController.swift in Sources */,
+				AAD8BAA21FAE4CDB00DE3FB9 /* FavoritesManager.swift in Sources */,
 				AA6F1AAC1FAA751000AF7BEC /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

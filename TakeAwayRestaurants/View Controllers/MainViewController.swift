@@ -18,11 +18,10 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let appController = AppController()
-        let jsonArray = appController.loadJSONFile(jsonFileName: jsonFileName)
-        let restArray:[Restaurant] = appController.generateRestaurantArray(fromJSONArray: jsonArray!)!
-        debugPrint(RestaurantSortController.sortRestaurants(allRestaurantsArray: restArray, sortOption: .BestMatch))
+        
+        let jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
+        let restArray:[Restaurant] = AppController.generateRestaurantArray(fromJSONArray: jsonArray!)!
+//        debugPrint(RestaurantSortController.sortRestaurants(allRestaurantsArray: restArray, sortOption: .BestMatch))
         
         nonFavoriteRestaurantsArray = restArray
         
@@ -88,6 +87,7 @@ extension MainViewController: UITabBarDelegate, UITableViewDataSource
         cell.restaurantNameLabel.text = restaurant.name
         cell.restaurantStatusLabel.text = restaurant.status
         cell.restaurantFavoriteButton.isSelected = restaurant.isFavorite
+        cell.restaurant = restaurant
         
         return cell
     }
@@ -95,8 +95,20 @@ extension MainViewController: UITabBarDelegate, UITableViewDataSource
     
 }
 
-class RestaurantCell:UITableViewCell {
+class RestaurantCell:UITableViewCell
+{
+    weak var restaurant:Restaurant!
+    
     @IBOutlet var restaurantNameLabel: UILabel!
     @IBOutlet var restaurantStatusLabel: UILabel!
     @IBOutlet var restaurantFavoriteButton: UIButton!
+    
+    @IBAction func addFavoritesButtonTapped(_ sender: UIButton)
+    {
+        debugPrint("Add favorites button tapped")
+        if FavoritesManager.sharedManager.addRestaurantToFavorites(restaurant: restaurant) {
+            restaurantFavoriteButton.isSelected = true
+        }
+        
+    }
 }

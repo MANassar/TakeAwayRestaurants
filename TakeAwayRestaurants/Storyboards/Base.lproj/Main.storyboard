@@ -63,6 +63,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="FavoriteOff"/>
                                                     <state key="selected" backgroundImage="FavoriteOn"/>
+                                                    <connections>
+                                                        <action selector="addFavoritesButtonTapped:" destination="E3U-1S-Sub" eventType="touchUpInside" id="GJg-Dl-tpO"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>

@@ -10,12 +10,13 @@ import Foundation
 
 class AppController
 {
-    var jsonArray:[JSON]!
+    static let sharedController = AppController()
+    static var jsonArray:[JSON]!
     
     //Load the JSON file from the app directory. Generates a JSON array
-    func loadJSONFile(jsonFileName:String) -> [JSON]?
+    class func loadJSONFile(jsonFileName:String) -> [JSON]?
     {
-        let bundle = Bundle(for: type(of: self))
+        let bundle = Bundle(for: self)
         let path = bundle.path(forResource: jsonFileName, ofType: "json")
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url, options: .alwaysMapped)
@@ -32,9 +33,9 @@ class AppController
     }
     
     //Takes the generated JSON array and generates a restaurant array
-    func generateRestaurantArray(fromJSONArray: [JSON]) -> [Restaurant]?
+    class func generateRestaurantArray(fromJSONArray: [JSON]) -> [Restaurant]?
     {
-        guard let restaurantArray = [Restaurant].from(jsonArray: jsonArray) else {
+        guard let restaurantArray = [Restaurant].from(jsonArray: fromJSONArray) else {
             return nil
         }
         
