@@ -9,28 +9,30 @@
 import XCTest
 @testable import TakeAwayRestaurants
 
-class TakeAwayRestaurantsTests: XCTestCase {
-    
-    var appController:AppController!
+class TakeAwayRestaurantsTests: XCTestCase
+{
     var jsonFileName:String!
+    var favoritesManager:FavoritesManager!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        appController = AppController()
         jsonFileName = "sample iOS"
+        favoritesManager = FavoritesManager.sharedManager
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        appController = nil
         jsonFileName = nil
+        favoritesManager.clearAllFavorites()
+        favoritesManager = nil
+        
         super.tearDown()
     }
     
     func testJSONPathCanLoad()
     {
-        let jsonArray = appController.loadJSONFile(jsonFileName: jsonFileName)
+        let jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
         XCTAssertNotNil(jsonArray, "We couldnt load JSON")
         
     }
@@ -39,8 +41,8 @@ class TakeAwayRestaurantsTests: XCTestCase {
     //This function checks that we actually have restaurants and whether the restaruant array count matches the JSON array count
     func testRestaurantCountMatchesJSONCount()
     {
-        let jsonArray = appController.loadJSONFile(jsonFileName: jsonFileName)
-        guard let restaurantArray = appController.generateRestaurantArray(fromJSONArray: jsonArray!) else {
+        let jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
+        guard let restaurantArray = AppController.generateRestaurantArray(fromJSONArray: jsonArray!) else {
             XCTFail("Couldnt parse JSON")
             return
         }
@@ -50,8 +52,8 @@ class TakeAwayRestaurantsTests: XCTestCase {
     
     func testRestaurantSort()
     {
-        let jsonArray = appController.loadJSONFile(jsonFileName: jsonFileName)
-        guard let restaurantArray = appController.generateRestaurantArray(fromJSONArray: jsonArray!) else {
+        let jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
+        guard let restaurantArray = AppController.generateRestaurantArray(fromJSONArray: jsonArray!) else {
             XCTFail("Couldnt parse JSON")
             return
         }
@@ -85,4 +87,49 @@ class TakeAwayRestaurantsTests: XCTestCase {
         
     }
     
+    func testAddFavorites()
+    {
+        let jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
+        guard let restaurantArray = AppController.generateRestaurantArray(fromJSONArray: jsonArray!) else {
+            XCTFail("Couldnt parse JSON")
+            return
+        }
+        
+        if favoritesManager.restaurantIsFavorite(restaurant: restaurantArray.first!) {
+            XCTFail("Restaurant is already in favorites")
+        }
+        
+        _ = favoritesManager.addRestaurantToFavorites(restaurant: restaurantArray.first!)
+        
+        XCTAssertTrue(favoritesManager.restaurantIsFavorite(restaurant: restaurantArray.first!))
+    }
+    
+    func testRemoveFavorite()
+    {
+        let jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
+        guard let restaurantArray = AppController.generateRestaurantArray(fromJSONArray: jsonArray!) else {
+            XCTFail("Couldnt parse JSON")
+            return
+        }
+        
+        let restaurant = restaurantArray.first!
+        
+        if favoritesManager.restaurantIsFavorite(restaurant: restaurant) {
+            XCTFail("Restaurant is already in favorites")
+        }
+        
+        //Add the restaurat to favs
+        _ = favoritesManager.addRestaurantToFavorites(restaurant: restaurant)
+        
+        //Confirm it is added
+        if !favoritesManager.restaurantIsFavorite(restaurant: restaurant) {
+            XCTFail("Restaurant was not added to favorites")
+        }
+        
+        //Remove the restaurant from favs
+        favoritesManager.removeRestaurantFromFavorites(restaurant: restaurant)
+        
+        //Make sure it is removed
+        XCTAssertFalse(favoritesManager.restaurantIsFavorite(restaurant: restaurant))
+    }
 }

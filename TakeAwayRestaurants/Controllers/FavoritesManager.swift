@@ -89,9 +89,17 @@ class FavoritesManager
         }
     }
     
+    func clearAllFavorites()
+    {
+        favoriteRestaurantsArray = nil
+        _ = updateLocalStorage()
+    }
+    
     private func updateLocalStorage() -> Bool
     {
         guard let jsonArray = favoriteRestaurantsArray?.toJSONArray() else {
+            UserDefaults.standard.set(nil, forKey: favoritesKey)
+            UserDefaults.standard.synchronize()
             return false
         }
         
@@ -101,9 +109,7 @@ class FavoritesManager
         UserDefaults.standard.synchronize()
         return true
     }
-//
-//    func removeRestaurantWithNameFromFavorites(restaurantName:String) -> Bool {
-//        
-//    }
+
+    
     
 }
