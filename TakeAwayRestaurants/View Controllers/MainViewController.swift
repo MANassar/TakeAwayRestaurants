@@ -144,6 +144,15 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if (section == 0 && gotFavorites) {
+            return "Favorite Restaurants"
+        }
+        else {
+            return "Restaurants"
+        }
+    }
     
     //
     // MARK: Restaurant Cell Delegate

@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,30 +51,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="105.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8P-FY-1WT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8P-FY-1WT">
                                                     <rect key="frame" x="15" y="11" width="284" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8D-oV-jg3">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8D-oV-jg3">
                                                     <rect key="frame" x="15" y="42" width="284" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sort Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOK-u2-vM1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOK-u2-vM1">
                                                     <rect key="frame" x="15" y="73" width="284" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPn-Ua-QOQ">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPn-Ua-QOQ">
                                                     <rect key="frame" x="322" y="34" width="38" height="38"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="LPn-Ua-QOQ" secondAttribute="height" multiplier="1:1" id="gEQ-bC-0iw"/>
+                                                    </constraints>
                                                     <state key="normal" backgroundImage="FavoriteOff"/>
                                                     <state key="selected" backgroundImage="FavoriteOn"/>
                                                     <connections>
@@ -81,6 +81,25 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LPn-Ua-QOQ" firstAttribute="leading" secondItem="x8D-oV-jg3" secondAttribute="trailing" constant="23" id="558-yz-Naw"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GOK-u2-vM1" secondAttribute="trailingMargin" id="Bmt-Ks-7wq"/>
+                                                <constraint firstItem="GOK-u2-vM1" firstAttribute="height" secondItem="w8P-FY-1WT" secondAttribute="height" id="Ily-ph-ext"/>
+                                                <constraint firstItem="LPn-Ua-QOQ" firstAttribute="trailing" secondItem="hdf-kr-sRq" secondAttribute="trailingMargin" id="M6n-pc-3Pp"/>
+                                                <constraint firstItem="GOK-u2-vM1" firstAttribute="width" secondItem="w8P-FY-1WT" secondAttribute="width" id="Oxz-gc-N8n"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w8P-FY-1WT" secondAttribute="trailingMargin" id="RLN-YZ-NC6"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="GOK-u2-vM1" secondAttribute="bottom" constant="1" id="TsT-H2-p9i"/>
+                                                <constraint firstItem="w8P-FY-1WT" firstAttribute="leading" secondItem="hdf-kr-sRq" secondAttribute="leadingMargin" id="YMy-8a-cHH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="LPn-Ua-QOQ" secondAttribute="bottom" constant="23" id="a5H-Be-EMZ"/>
+                                                <constraint firstItem="x8D-oV-jg3" firstAttribute="height" secondItem="w8P-FY-1WT" secondAttribute="height" id="bDr-OP-uDW"/>
+                                                <constraint firstItem="GOK-u2-vM1" firstAttribute="top" secondItem="x8D-oV-jg3" secondAttribute="bottom" constant="10" id="dy7-Bd-Ysk"/>
+                                                <constraint firstItem="x8D-oV-jg3" firstAttribute="leading" secondItem="hdf-kr-sRq" secondAttribute="leadingMargin" id="fF5-2F-dfr"/>
+                                                <constraint firstItem="x8D-oV-jg3" firstAttribute="top" secondItem="w8P-FY-1WT" secondAttribute="bottom" constant="10" id="g8h-Eo-sjK"/>
+                                                <constraint firstItem="GOK-u2-vM1" firstAttribute="leading" secondItem="hdf-kr-sRq" secondAttribute="leadingMargin" id="hUF-OJ-j7R"/>
+                                                <constraint firstItem="x8D-oV-jg3" firstAttribute="width" secondItem="w8P-FY-1WT" secondAttribute="width" id="ikT-O7-jFr"/>
+                                                <constraint firstItem="LPn-Ua-QOQ" firstAttribute="top" secondItem="hdf-kr-sRq" secondAttribute="topMargin" constant="23" id="jJm-Xj-Xbh"/>
+                                                <constraint firstItem="w8P-FY-1WT" firstAttribute="top" secondItem="hdf-kr-sRq" secondAttribute="topMargin" id="oOh-uI-aCm"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="restaurantFavoriteButton" destination="LPn-Ua-QOQ" id="UOG-St-L9S"/>
