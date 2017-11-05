@@ -21,43 +21,22 @@ enum SortOptions {
 
 class RestaurantSortController
 {
-    
-    //This function separates favorites and non favorites.
-    class func separateFavoriteRestaurants(allRestaurantsArray: [Restaurant]) -> (favorite:[Restaurant], nonFavorite:[Restaurant]) //Returns favroite and non favorite
-    {
-        var favoriteRestaurantsArray = [Restaurant]()
-        var nonFavoriteRestarurantsArray = [Restaurant]()
-        
-        for restaurant in allRestaurantsArray
-        {
-            if (restaurant.isFavorite) {
-                favoriteRestaurantsArray.append(restaurant)
-            }
-            
-            else {
-                nonFavoriteRestarurantsArray.append(restaurant)
-            }
-        }
-        
-        return (favoriteRestaurantsArray, nonFavoriteRestarurantsArray)
-    }
-    
     //This function doesnt care whether the restaurant is favorite or not. It will just sort based on the sort parameter
-    class func sortRestaurantSubArray(restaurantsSubArray: [Restaurant], sortOption:SortOptions) -> [Restaurant]
+    
+    class func seperateRestaurantsByStatus(restaurantArray:[Restaurant]) -> (openRestaurants:[Restaurant], orderAheadRestaurants:[Restaurant], closedRestaurants:[Restaurant])
     {
-        //First sort parameter should be status, then the sort option.
         //We have 3 possible statuses in order, Open, Order Ahead, Closed
-        
         var openRestaurants = [Restaurant]()
         var orderAheadRestaurants = [Restaurant]()
         var closedRestaurants = [Restaurant]()
         
-        for restaurant in restaurantsSubArray {
+        for restaurant in restaurantArray
+        {
             switch restaurant.status
             {
             case "open":
                 openRestaurants.append(restaurant)
-            
+                
             case "closed":
                 closedRestaurants.append(restaurant)
                 
@@ -69,6 +48,12 @@ class RestaurantSortController
             }
         }
         
+        return (openRestaurants, orderAheadRestaurants, closedRestaurants)
+    }
+    
+    class func sortRestaurantSubArray(restaurantsSubArray: [Restaurant], sortOption:SortOptions) -> [Restaurant]
+    {
+        //First sort parameter should be status, then the sort option.
         switch sortOption
         {
         case .BestMatch:
@@ -100,17 +85,16 @@ class RestaurantSortController
 //    This is the main function you call
     class func sortRestaurants(allRestaurantsArray: [Restaurant], sortOption: SortOptions) -> [Restaurant]
     {
-        //First separate favorites from non favorites
-        let subArrays = self.separateFavoriteRestaurants(allRestaurantsArray: allRestaurantsArray)
-        let favorites = subArrays.favorite
-        let nonFavorites = subArrays.nonFavorite
+        let separatedRestaurants = seperateRestaurantsByStatus(restaurantArray: allRestaurantsArray)
+        let openRestaurants = separatedRestaurants.openRestaurants
+        let orderAheadRestaurants = separatedRestaurants.orderAheadRestaurants
+        let closedRestaurants = separatedRestaurants.closedRestaurants
         
-        //Sort the favorites
-        var sortedArray:[Restaurant] = RestaurantSortController.sortRestaurantSubArray(restaurantsSubArray: favorites, sortOption: sortOption)
+        var sortedRestaurants = [Restaurant]()
+        sortedRestaurants.append(contentsOf: sortRestaurantSubArray(restaurantsSubArray: openRestaurants, sortOption: sortOption))
+        sortedRestaurants.append(contentsOf: sortRestaurantSubArray(restaurantsSubArray: orderAheadRestaurants, sortOption: sortOption))
+        sortedRestaurants.append(contentsOf: sortRestaurantSubArray(restaurantsSubArray: closedRestaurants, sortOption: sortOption))
         
-        //Sort the non favorites and add them to the array
-        sortedArray.append(contentsOf: RestaurantSortController.sortRestaurantSubArray(restaurantsSubArray: nonFavorites, sortOption: sortOption))
-        
-        return sortedArray
+        return sortedRestaurants
     }
 }

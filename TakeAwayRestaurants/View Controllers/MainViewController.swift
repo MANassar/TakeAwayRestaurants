@@ -15,46 +15,44 @@ class MainViewController: UIViewController {
     var gotFavorites = false
     
     let jsonFileName = "sample iOS"
+    var jsonArray:[JSON]!
+    
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
+        jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
+        refreshData()
+    }
+
+    func refreshData()
+    {
         let restArray:[Restaurant] = AppController.generateRestaurantArray(fromJSONArray: jsonArray!)!
-//        debugPrint(RestaurantSortController.sortRestaurants(allRestaurantsArray: restArray, sortOption: .BestMatch))
+        let subArrays = AppController.getSeparatedRestaurantsArrays(generatedRestaurantArray: restArray)
         
-        nonFavoriteRestaurantsArray = restArray
+        favoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.favoriteRestaurants!, sortOption: .BestMatch)
+        nonFavoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.nonFavoriteRestaurants, sortOption: .BestMatch)
         
         gotFavorites = (favoriteRestaurantsArray != nil && favoriteRestaurantsArray!.count > 0)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-extension MainViewController: UITabBarDelegate, UITableViewDataSource
+extension MainViewController: UITableViewDataSource, UITableViewDelegate, RestaurantCellDelegate
 {
     func numberOfSections(in tableView: UITableView) -> Int
     {
         //If we have favorites, then 2 sections, if not then 1 section
+        refreshData()
+        
         if (gotFavorites) {
             return 2
         }
-        
         else {
             return 1
         }
@@ -65,7 +63,6 @@ extension MainViewController: UITabBarDelegate, UITableViewDataSource
         if (section == 0 && gotFavorites) {
             return favoriteRestaurantsArray!.count
         }
-        
         else {
             return nonFavoriteRestaurantsArray!.count
         }
@@ -74,41 +71,41 @@ extension MainViewController: UITabBarDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath) as! RestaurantCell
+        cell.delegate = self
+        cell.restaurantFavoriteButton.isSelected = false //Clear the cell state
+        
         var restaurant:Restaurant!
         
         if (indexPath.section == 0 && gotFavorites) {
             restaurant = favoriteRestaurantsArray![indexPath.row]
+            cell.restaurantFavoriteButton.isSelected = true
         }
-        
+            
         else {
             restaurant = nonFavoriteRestaurantsArray![indexPath.row]
         }
         
         cell.restaurantNameLabel.text = restaurant.name
         cell.restaurantStatusLabel.text = restaurant.status
-        cell.restaurantFavoriteButton.isSelected = restaurant.isFavorite
         cell.restaurant = restaurant
         
         return cell
     }
     
-    
-}
-
-class RestaurantCell:UITableViewCell
-{
-    weak var restaurant:Restaurant!
-    
-    @IBOutlet var restaurantNameLabel: UILabel!
-    @IBOutlet var restaurantStatusLabel: UILabel!
-    @IBOutlet var restaurantFavoriteButton: UIButton!
-    
-    @IBAction func addFavoritesButtonTapped(_ sender: UIButton)
+    func addFavoritesButtonPressed(restaurantCell: RestaurantCell)
     {
-        debugPrint("Add favorites button tapped")
-        if FavoritesManager.sharedManager.addRestaurantToFavorites(restaurant: restaurant) {
-            restaurantFavoriteButton.isSelected = true
+        let favoritesManager = FavoritesManager.sharedManager
+        if !favoritesManager.restaurantIsFavorite(restaurant: restaurantCell.restaurant)
+        {
+            _ = favoritesManager.addRestaurantToFavorites(restaurant: restaurantCell.restaurant)
+            restaurantCell.restaurantFavoriteButton.isSelected = true
         }
         
+        else {
+            _ = favoritesManager.removeRestaurantFromFavorites(restaurant: restaurantCell.restaurant)
+            restaurantCell.restaurantFavoriteButton.isSelected = false
+        }
+        
+        tableView.reloadData()
     }
 }

@@ -29,7 +29,7 @@ struct RestaurantKeys
     static let isFavoriteKey = "isFavorite"
 }
 
-class Restaurant:Decodable, Encodable, CustomStringConvertible
+class Restaurant:Decodable, Encodable, CustomStringConvertible, Equatable
 {
     var name:String!
     var status:String!
@@ -41,10 +41,9 @@ class Restaurant:Decodable, Encodable, CustomStringConvertible
     var averageProductPrice: Float!
     var deliveryCosts: Float!
     var minCost: Float!
-    var isFavorite:Bool!
     
     var description:String {
-        return "Restaurant name = \(name!), isFavorite = \(isFavorite), status = \(status!), bestMatch = \(bestMatch)\n"
+        return "Restaurant name = \(name!), status = \(status!), bestMatch = \(bestMatch)\n"
     }
     
     required init?(json: JSON)
@@ -74,8 +73,14 @@ class Restaurant:Decodable, Encodable, CustomStringConvertible
             RestaurantKeys.averageProductPriceKey ~~> self.averageProductPrice,
             RestaurantKeys.deliveryCostsKey ~~> self.deliveryCosts,
             RestaurantKeys.minCostKey ~~> self.minCost,
-            RestaurantKeys.isFavoriteKey ~~> self.isFavorite
             ])
+    }
+    
+    //
+    // MARK: Equatable protocol
+    //
+    static func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
+        return (lhs.name == rhs.name)
     }
 }
 

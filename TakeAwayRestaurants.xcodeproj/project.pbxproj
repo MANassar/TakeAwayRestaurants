@@ -27,6 +27,7 @@
 		AA8F80BD1FAA46E400046932 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80BC1FAA46E400046932 /* Restaurant.swift */; };
 		AA8F80C31FAA51F400046932 /* RestaurantSortController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */; };
 		AAD8BAA21FAE4CDB00DE3FB9 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD8BAA11FAE4CDB00DE3FB9 /* FavoritesManager.swift */; };
+		AAD8BAA41FAF8F2D00DE3FB9 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD8BAA31FAF8F2D00DE3FB9 /* RestaurantCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		AA8F80BC1FAA46E400046932 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		AA8F80C21FAA51F400046932 /* RestaurantSortController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortController.swift; sourceTree = "<group>"; };
 		AAD8BAA11FAE4CDB00DE3FB9 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		AAD8BAA31FAF8F2D00DE3FB9 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				4FF96BAA1FACBC1600D99676 /* MainViewController.swift */,
+				AAD8BAA31FAF8F2D00DE3FB9 /* RestaurantCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				4FF96BAB1FACBC1600D99676 /* MainViewController.swift in Sources */,
 				AA6F1AAA1FAA751000AF7BEC /* ExtensionDecodable.swift in Sources */,
 				AA6F1AA81FAA750F00AF7BEC /* ExtensionDictionary.swift in Sources */,
+				AAD8BAA41FAF8F2D00DE3FB9 /* RestaurantCell.swift in Sources */,
 				AA8F80BD1FAA46E400046932 /* Restaurant.swift in Sources */,
 				AA8F80C31FAA51F400046932 /* RestaurantSortController.swift in Sources */,
 				AA8F80881FAA458B00046932 /* AppDelegate.swift in Sources */,

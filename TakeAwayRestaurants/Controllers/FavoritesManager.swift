@@ -12,7 +12,7 @@ class FavoritesManager
 {
     static let sharedManager = FavoritesManager()
     
-    var favoriteRestaurantsArray:[Restaurant]?
+    var favoriteRestaurantsArray:[Restaurant]!
     var favoriteRestaurantsJSONArray:[JSON]?
     let favoritesKey = "favoritesArray"
     
@@ -43,10 +43,6 @@ class FavoritesManager
     //
     func restaurantIsFavorite(restaurant:Restaurant) -> Bool
     {
-        if restaurant.isFavorite {
-            return true
-        }
-        
         if favoriteRestaurantsArray == nil || favoriteRestaurantsArray?.count == 0 {
             return false
         }
@@ -54,7 +50,6 @@ class FavoritesManager
         for comparisonRestaurant in favoriteRestaurantsArray!
         {
             if (restaurant.name == comparisonRestaurant.name) {
-                restaurant.isFavorite = true
                 return true
             }
         }
@@ -66,18 +61,10 @@ class FavoritesManager
     //
     func addRestaurantToFavorites(restaurant:Restaurant) -> Bool
     {
-        if !restaurantIsFavorite(restaurant: restaurant) {
-            restaurant.isFavorite = true
+        if !restaurantIsFavorite(restaurant: restaurant)
+        {
             favoriteRestaurantsArray!.append(restaurant)
-            guard let jsonArray = favoriteRestaurantsArray?.toJSONArray() else {
-                return false
-            }
-            
-            debugPrint("New Favorites JSON array: \(jsonArray)")
-            
-            UserDefaults.standard.set(jsonArray, forKey: favoritesKey)
-            UserDefaults.standard.synchronize()
-            return true
+            return updateLocalStorage()
         }
         
         else {
@@ -86,10 +73,35 @@ class FavoritesManager
         }
     }
     
-//    func removeRestaurantFromFavorites(restaurant:Restaurant) -> Bool {
-//        
-//    }
-//    
+    func removeRestaurantFromFavorites(restaurant:Restaurant) -> Bool
+    {
+        if restaurantIsFavorite(restaurant: restaurant)
+        {
+            let index = favoriteRestaurantsArray.index(of: restaurant)
+            favoriteRestaurantsArray?.remove(at: index!)
+            debugPrint("Removed restaurant from favorites")
+            return updateLocalStorage()
+        }
+        
+        else {
+            debugPrint("Restaurant not in favorites")
+            return false
+        }
+    }
+    
+    private func updateLocalStorage() -> Bool
+    {
+        guard let jsonArray = favoriteRestaurantsArray?.toJSONArray() else {
+            return false
+        }
+        
+        debugPrint("New Favorites JSON array count: \(jsonArray.count)")
+        
+        UserDefaults.standard.set(jsonArray, forKey: favoritesKey)
+        UserDefaults.standard.synchronize()
+        return true
+    }
+//
 //    func removeRestaurantWithNameFromFavorites(restaurantName:String) -> Bool {
 //        
 //    }

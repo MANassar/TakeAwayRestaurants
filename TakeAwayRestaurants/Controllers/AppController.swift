@@ -42,5 +42,27 @@ class AppController
         return restaurantArray
     }
     
-    
+    //This function generates 2 arrays, 1 for favorites (if present) and one for non favorites
+    class func getSeparatedRestaurantsArrays(generatedRestaurantArray:[Restaurant]) -> (favoriteRestaurants:[Restaurant]?, nonFavoriteRestaurants:[Restaurant])
+    {
+        var nonFavoritesArray = [Restaurant]()
+        
+        if let favoritesArray = FavoritesManager.sharedManager.favoriteRestaurantsArray {
+            //Now only add items that are not in the favorites array
+            for restaurant in generatedRestaurantArray
+            {
+                if !favoritesArray.contains(restaurant) {
+                    nonFavoritesArray.append(restaurant)
+                }
+            }
+            
+            return (favoritesArray, nonFavoritesArray)
+        }
+        
+        else {
+            return (nil, nonFavoritesArray)
+        }
+        
+        
+    }
 }
