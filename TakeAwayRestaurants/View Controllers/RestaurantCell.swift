@@ -16,6 +16,7 @@ class RestaurantCell:UITableViewCell
     @IBOutlet var restaurantNameLabel: UILabel!
     @IBOutlet var restaurantStatusLabel: UILabel!
     @IBOutlet var restaurantFavoriteButton: UIButton!
+    @IBOutlet var restaurantSortValueLabel: UILabel!
     
     @IBAction func addFavoritesButtonTapped(_ sender: UIButton)
     {

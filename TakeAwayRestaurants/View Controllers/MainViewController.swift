@@ -13,15 +13,16 @@ class MainViewController: UIViewController {
     var favoriteRestaurantsArray:[Restaurant]?
     var nonFavoriteRestaurantsArray:[Restaurant]?
     var gotFavorites = false
+    var sortOption = SortOptions.BestMatch
     
     let jsonFileName = "sample iOS"
     var jsonArray:[JSON]!
     
     @IBOutlet var tableView: UITableView!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
         jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
         refreshData()
     }
@@ -31,8 +32,8 @@ class MainViewController: UIViewController {
         let restArray:[Restaurant] = AppController.generateRestaurantArray(fromJSONArray: jsonArray!)!
         let subArrays = AppController.getSeparatedRestaurantsArrays(generatedRestaurantArray: restArray)
         
-        favoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.favoriteRestaurants!, sortOption: .BestMatch)
-        nonFavoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.nonFavoriteRestaurants, sortOption: .BestMatch)
+        favoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.favoriteRestaurants!, sortOption: sortOption)
+        nonFavoriteRestaurantsArray = RestaurantSortController.sortRestaurants(allRestaurantsArray: subArrays.nonFavoriteRestaurants, sortOption: sortOption)
         
         gotFavorites = (favoriteRestaurantsArray != nil && favoriteRestaurantsArray!.count > 0)
     }
@@ -85,9 +86,34 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
             restaurant = nonFavoriteRestaurantsArray![indexPath.row]
         }
         
+        cell.restaurant = restaurant
         cell.restaurantNameLabel.text = restaurant.name
         cell.restaurantStatusLabel.text = restaurant.status
-        cell.restaurant = restaurant
+        
+        
+        var restaurantSortValue:Float!
+        
+        switch sortOption
+        {
+            case .BestMatch:
+                restaurantSortValue = restaurant.bestMatch
+            case .AveragePrice:
+                restaurantSortValue = restaurant.averageProductPrice
+            case .DeliveryCost:
+                restaurantSortValue = restaurant.deliveryCosts
+            case .Distance:
+                restaurantSortValue = restaurant.distance
+            case .MinCost:
+                restaurantSortValue = restaurant.minCost
+            case .Newest:
+                restaurantSortValue = restaurant.newest
+            case .Popularity:
+                restaurantSortValue = restaurant.popularity
+            case .RatingAverage:
+                restaurantSortValue = restaurant.ratingAverage
+        }
+        
+        cell.restaurantSortValueLabel.text = "\(sortOption.rawValue): \(restaurantSortValue!)"
         
         return cell
     }

@@ -8,15 +8,15 @@
 
 import Foundation
 
-enum SortOptions {
-    case BestMatch
-    case Newest
-    case RatingAverage
-    case Distance
-    case Popularity
-    case AveragePrice
-    case DeliveryCost
-    case MinCost
+enum SortOptions:String {
+    case BestMatch = "Best Match"
+    case Newest = "Newest"
+    case RatingAverage = "Rating Average"
+    case Distance = "Distance"
+    case Popularity = "Popularity"
+    case AveragePrice = "Average Price"
+    case DeliveryCost = "Delivery Cost"
+    case MinCost = "Minimum Cost"
 }
 
 class RestaurantSortController

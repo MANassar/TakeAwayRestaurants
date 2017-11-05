@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum Status:Int {
-    case Closed = 0
-    case Open = 1
-    case OrderAhead = 2
-}
-
 struct RestaurantKeys
 {
     static let nameKey = "name"
