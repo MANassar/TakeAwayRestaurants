@@ -71,6 +71,11 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+    }
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate, RestaurantCellDelegate, UIPopoverPresentationControllerDelegate
