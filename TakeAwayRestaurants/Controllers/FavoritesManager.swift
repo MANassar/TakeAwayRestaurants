@@ -84,7 +84,7 @@ class FavoritesManager
     
     func clearAllFavorites()
     {
-        favoriteRestaurantsArray = nil
+        favoriteRestaurantsArray.removeAll()
         _ = updateLocalStorage()
     }
     
