@@ -16,13 +16,6 @@ class FavoritesManager
     var favoriteRestaurantsJSONArray:[JSON]?
     let favoritesKey = "favoritesArray"
     
-    private var favoritesPathURL:URL {
-        get {
-            let documentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-            return documentsDirectory.appendingPathComponent("FavoriteRestaurants.json")
-        }
-    }
-    
     private init()
     {
         if let jsonArray = UserDefaults.standard.array(forKey: favoritesKey) as? [JSON] {

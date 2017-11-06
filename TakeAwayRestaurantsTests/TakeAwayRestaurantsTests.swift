@@ -13,12 +13,14 @@ class TakeAwayRestaurantsTests: XCTestCase
 {
     var jsonFileName:String!
     var favoritesManager:FavoritesManager!
+    var mainVC:MainViewController!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         jsonFileName = "sample iOS"
         favoritesManager = FavoritesManager.sharedManager
+        mainVC = MainViewController()
     }
     
     override func tearDown() {
@@ -26,6 +28,7 @@ class TakeAwayRestaurantsTests: XCTestCase
         jsonFileName = nil
         favoritesManager.clearAllFavorites()
         favoritesManager = nil
+        mainVC = nil
         
         super.tearDown()
     }
@@ -127,9 +130,25 @@ class TakeAwayRestaurantsTests: XCTestCase
         }
         
         //Remove the restaurant from favs
-        favoritesManager.removeRestaurantFromFavorites(restaurant: restaurant)
+        _ = favoritesManager.removeRestaurantFromFavorites(restaurant: restaurant)
         
         //Make sure it is removed
         XCTAssertFalse(favoritesManager.restaurantIsFavorite(restaurant: restaurant))
+    }
+    
+    func testFiltering()
+    {
+        let jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
+        guard let restaurantArray = AppController.generateRestaurantArray(fromJSONArray: jsonArray!) else {
+            XCTFail("Couldnt parse JSON")
+            return
+        }
+        
+        let restaurant = restaurantArray.first!
+        let filterText = restaurant.name //We will filter by the while resturant name, this way we expect toget only this restaurant
+        
+        let filteredArray = mainVC.filterRestaurantArrayWithString(originalArray: restaurantArray, searchString: filterText!)
+        
+        XCTAssertTrue(filteredArray.count == 1 && filteredArray.contains(restaurant))
     }
 }

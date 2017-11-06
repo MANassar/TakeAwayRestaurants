@@ -203,12 +203,24 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
     }
 }
 
+//
+// MARK: Extension with seach handling and filtering
+//
 extension MainViewController: UISearchBarDelegate
 {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         debugPrint(searchText)
         filterRestaurantsWithString(searchString: searchText)
         mainTableView.reloadData()
+    }
+    
+    func filterRestaurantArrayWithString(originalArray: [Restaurant], searchString: String) -> [Restaurant]
+    {
+        let filteredArray = originalArray.filter { (restaurant) -> Bool in
+            return restaurant.name.lowercased().contains(searchString.lowercased())
+        }
+        
+        return filteredArray
     }
     
     //This should filter both the favorites and the non favorites
@@ -225,13 +237,8 @@ extension MainViewController: UISearchBarDelegate
         {
             isFiltered = true
             
-            filteredFavorites = favoriteRestaurantsArray?.filter { restaurant in
-                return restaurant.name.lowercased().contains(searchString.lowercased())
-            }
-            
-            filteredNonFavorites = nonFavoriteRestaurantsArray?.filter { restaurant in
-                return restaurant.name.lowercased().contains(searchString.lowercased())
-            }
+            filteredFavorites = filterRestaurantArrayWithString(originalArray: favoriteRestaurantsArray!, searchString: searchString)
+            filteredNonFavorites = filterRestaurantArrayWithString(originalArray: nonFavoriteRestaurantsArray!, searchString: searchString)
         }
     }
 }

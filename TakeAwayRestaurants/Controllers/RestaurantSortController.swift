@@ -66,7 +66,7 @@ class RestaurantSortController
             return restaurantsSubArray.sorted(by: {$0.ratingAverage > $1.ratingAverage})
         
         case .Distance:
-            return restaurantsSubArray.sorted(by: {$0.distance > $1.distance})
+            return restaurantsSubArray.sorted(by: {$0.distance < $1.distance}) //Different because less distance is usually preferred on top
             
         case .Popularity:
             return restaurantsSubArray.sorted(by: {$0.popularity > $1.popularity})
@@ -75,10 +75,10 @@ class RestaurantSortController
             return restaurantsSubArray.sorted(by: {$0.averageProductPrice > $1.averageProductPrice})
             
         case .DeliveryCost:
-            return restaurantsSubArray.sorted(by: {$0.deliveryCosts > $1.deliveryCosts})
+            return restaurantsSubArray.sorted(by: {$0.deliveryCosts < $1.deliveryCosts}) //Different because less delivery cost is usually preferred on top
         
         case .MinCost:
-            return restaurantsSubArray.sorted(by: {$0.minCost > $1.minCost})
+            return restaurantsSubArray.sorted(by: {$0.minCost < $1.minCost}) //Different because less min cost is usually preferred on top
         }
     }
     
