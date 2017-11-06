@@ -133,19 +133,10 @@
                     </view>
                     <connections>
                         <outlet property="mainTableView" destination="KdH-2y-nfW" id="04D-86-AJG"/>
-                        <outlet property="searchDisplayController" destination="gWa-0I-nfX" id="svt-9D-NHT"/>
+                        <outlet property="searchBar" destination="tHy-xf-YTK" id="j2u-zV-20U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="gWa-0I-nfX">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="5EJ-Ku-VJm"/>
-                        <outlet property="searchBar" destination="tHy-xf-YTK" id="xJJ-UG-zSl"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="wj0-Bo-BMF"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="LKW-KZ-h53"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="Ogq-qJ-mWS"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="132.68365817091455"/>
         </scene>

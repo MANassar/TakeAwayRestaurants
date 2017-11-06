@@ -21,18 +21,21 @@ class MainViewController: UIViewController {
     
     let jsonFileName = "sample iOS"
     var jsonArray:[JSON]!
+    var isFiltered = false
     
     @IBOutlet var mainTableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
+    
     var sortOptionsTableViewController:UITableViewController?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         jsonArray = AppController.loadJSONFile(jsonFileName: jsonFileName)
-        refreshData()
+        refreshData(isFiltered: isFiltered)
     }
 
-    func refreshData()
+    func refreshData(isFiltered: Bool)
     {
         let restArray:[Restaurant] = AppController.generateRestaurantArray(fromJSONArray: jsonArray!)!
         let subArrays = AppController.getSeparatedRestaurantsArrays(generatedRestaurantArray: restArray)
@@ -42,6 +45,10 @@ class MainViewController: UIViewController {
         
         filteredFavorites = favoriteRestaurantsArray
         filteredNonFavorites = nonFavoriteRestaurantsArray
+        
+        if isFiltered {
+            self.filterRestaurantsWithString(searchString: searchBar.text!)
+        }
         
         gotFavorites = (favoriteRestaurantsArray != nil && favoriteRestaurantsArray!.count > 0)
     }
@@ -71,7 +78,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
     func numberOfSections(in tableView: UITableView) -> Int
     {
         //If we have favorites, then 2 sections, if not then 1 section
-        refreshData()
+        refreshData(isFiltered: isFiltered)
         
         if (gotFavorites) {
             return 2
@@ -83,11 +90,17 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if (section == 0 && gotFavorites) {
-            return favoriteRestaurantsArray!.count
+        if tableView == mainTableView
+        {
+            if (section == 0 && gotFavorites) {
+                return filteredFavorites!.count
+            }
+            else {
+                return filteredNonFavorites!.count
+            }
         }
         else {
-            return nonFavoriteRestaurantsArray!.count
+            return 0
         }
     }
     
@@ -100,12 +113,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
         var restaurant:Restaurant!
         
         if (indexPath.section == 0 && gotFavorites) {
-            restaurant = favoriteRestaurantsArray![indexPath.row]
+            restaurant = filteredFavorites![indexPath.row]
             cell.restaurantFavoriteButton.isSelected = true
         }
             
         else {
-            restaurant = nonFavoriteRestaurantsArray![indexPath.row]
+            restaurant = filteredNonFavorites![indexPath.row]
         }
         
         cell.restaurant = restaurant
@@ -190,11 +203,35 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, Restau
     }
 }
 
-extension MainViewController: UISearchBarDelegate, UISearchDisplayDelegate
+extension MainViewController: UISearchBarDelegate
 {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        debugPrint(searchText)
+        filterRestaurantsWithString(searchString: searchText)
+        mainTableView.reloadData()
+    }
+    
     //This should filter both the favorites and the non favorites
     func filterRestaurantsWithString(searchString: String)
     {
+        if searchString == ""
+        {
+            filteredFavorites = favoriteRestaurantsArray
+            filteredNonFavorites = nonFavoriteRestaurantsArray
+            isFiltered = false
+        }
         
+        else
+        {
+            isFiltered = true
+            
+            filteredFavorites = favoriteRestaurantsArray?.filter { restaurant in
+                return restaurant.name.lowercased().contains(searchString.lowercased())
+            }
+            
+            filteredNonFavorites = nonFavoriteRestaurantsArray?.filter { restaurant in
+                return restaurant.name.lowercased().contains(searchString.lowercased())
+            }
+        }
     }
 }
